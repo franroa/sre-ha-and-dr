@@ -16,7 +16,7 @@ data "aws_caller_identity" "current" {}
    }
  }
 
-data "terraform_remote_state" "vpc" {
+data "terraform_remote_state" "db" {
   backend = "s3" 
   config = {
      bucket = "udacity-tf-fran"

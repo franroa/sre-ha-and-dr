@@ -57,3 +57,7 @@ Do the same for Grafana. You'll need to select each load balancer instance and c
 Login to Grafana with `admin` for the username and `prom-operator` for the password.
 
 7. At the end of your exercise, run `terraform destroy` and allow it to destroy all your resources
+
+[//]: # (franroa)
+
+[//]: # (RU12EYSCZP6SSUW6D4WHTM0JP5ZQTIUYHYNSYAD4A20WXYT79V)
