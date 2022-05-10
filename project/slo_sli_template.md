@@ -1,8 +1,8 @@
 # API Service
 
-| Category     | SLI | SLO                                                                                                         |
-|--------------|-----|-------------------------------------------------------------------------------------------------------------|
-| Availability |     | 99%                                                                                                         |
-| Latency      |     | 90% of requests below 100ms                                                                                 |
-| Error Budget |     | Error budget is defined at 20%. This means that 20% of the requests can fail and still be within the budget |
-| Throughput   |     | 5 RPS indicates the application is functioning                                                              |
+| Category     | SLI                                                                                                                                                                                              | SLO                                                                   |
+|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| Availability | ```sum (rate(apiserver_request_total{job="apiserver",code!~"5.."}[5d])) / sum (rate(apiserver_request_total{job="apiserver"}[5d])) >= 99```                                                      | Application is up the 99% of the time over the past 5 days            |
+| Latency      | ```histogram_quantile(0.90, sum(rate(apiserver_request_duration_seconds_bucket{job="apiserver"}[100m])) by (le, verb))```                                                                        | 90% of requests completed successfully below 100ms in the past 5 days |
+| Error Budget | ```1 - ((1 - (sum(increase(apiserver_request_total{job="apiserver", code="200"}[7d])) by (verb)) / sum(increase(apiserver_request_total{job="apiserver"}[30d])) by (verb)) / (1 - .80)) < 0.2``` | Error budget at 20% usage over the last 30 days                       |
+| Throughput   | ```sum(rate(apiserver_request_total{job="apiserver",code=~"2.."}[10m]))```                                                                                                                       | 5 RPS in the last 10 min                                              |

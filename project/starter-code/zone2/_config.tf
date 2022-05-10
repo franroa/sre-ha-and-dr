@@ -1,10 +1,11 @@
 terraform {
    backend "s3" {
-     bucket = "udacity-tf-travis-west"
+     bucket = "udacity-tf-fran-west"
      key    = "terraform/terraform.tfstate"
      region = "us-west-1"
    }
  }
+
 
  provider "aws" {
    region = "us-west-1"
