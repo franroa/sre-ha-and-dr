@@ -17,7 +17,7 @@ data "aws_caller_identity" "current" {}
  }
 
 data "terraform_remote_state" "db" {
-  backend = "s3" 
+  backend = "s3"
   config = {
      bucket = "udacity-tf-fran"
      key    = "terraform/terraform.tfstate"
